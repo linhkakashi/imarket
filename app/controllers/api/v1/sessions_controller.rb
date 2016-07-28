@@ -6,7 +6,7 @@ class Api::V1::SessionsController < Api::ApplicationController
       sign_in user, store: false
       user.generate_authentication_token!
       user.save
-      render json: user, status: :ok
+      render json: user, serializer: EventUserSerializer, status: :ok
     else
       render json: {errors: t(".error_login")}, status: :unprocessable_entity
     end
